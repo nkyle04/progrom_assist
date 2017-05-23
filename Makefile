@@ -4,9 +4,6 @@ CFLAGS=-std=c++11 -Wno-unknown-pragmas -Wall
 TARGET = parse_arguments
 GCC=g++
 
-SRC = $(wildcard *.cc)
-OBJ = $(patsubst %.cc, %.o, $(SRC))
-
 ALL : $(TARGET)
 
 parse_arguments : parse_arguments.o
