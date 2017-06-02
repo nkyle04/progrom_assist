@@ -72,17 +72,6 @@ int parse_arguments(int argc, char* argv[], Arguments &args) {
         }
     }
 
-    args.print();
-
-    if (args.thread_num <= 0 
-        || args.symbol_file == "" 
-        || args.params_file == ""
-        || args.test_images_file == ""
-        || args.test_labels_file == "") {
-        std::cout << "input argument not valid!" << std::endl;
-        return -1;
-    }
-
     return 0;
 }
 
