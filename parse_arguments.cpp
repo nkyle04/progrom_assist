@@ -7,31 +7,9 @@
 #include <string>
 #include <iostream>
 #include <unistd.h>
+#include "parse_arguments.h"
 
-struct Arguments {
-    int thread_num;
-    std::string symbol_file;
-    std::string params_file;
-    std::string test_images_file;
-    std::string test_labels_file;
-    
-    Arguments() : thread_num(0),
-                  symbol_file(""),
-                  params_file(""),
-                  test_images_file(""),
-                  test_labels_file("") {
-    }
-
-    void print() {
-        std::cout << "Arguments : "
-                  << " thread_num[" << thread_num << "]"
-                  << " symbol_file[" << symbol_file << "]"
-                  << " params_file[" << params_file << "]"
-                  << " test_images_file[" << test_images_file << "]"
-                  << " test_labels_file[" << test_labels_file << "]"
-                  << std::endl;
-    }
-};
+namespace arguments {
 
 void print_usage() {
     std::cout << "\tUsage:" << std::endl
@@ -65,7 +43,7 @@ int parse_arguments(int argc, char* argv[], Arguments &args) {
                 break;
             case 'h':
                 print_usage();
-                return -1;
+                return 0;
             default:
                 print_usage();
                 return -1;
@@ -75,11 +53,4 @@ int parse_arguments(int argc, char* argv[], Arguments &args) {
     return 0;
 }
 
-int main(int argc, char* argv[]) {
-    Arguments args;
-    if (parse_arguments(argc, argv, args) != 0) {
-        return 1;
-    }
-
-    return 0;
 }

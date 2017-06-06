@@ -1,13 +1,19 @@
 # Special thanks to https://github.com/pertusa for the Makefile
 CFLAGS=-std=c++11 -Wno-unknown-pragmas -Wall
 
-TARGET = parse_arguments
+TARGET = main
 GCC=g++
 
-ALL : $(TARGET)
+SRC=$(wildcard *.cpp)
+OBJ=$(patsubst %.cpp, %.o, $(SRC))
 
-parse_arguments : parse_arguments.o
-	$(GCC) -O3  -o $@ $< 
+ALL: $(TARGET)
+	@echo $(TARGET)
+	@echo $(SRC)
+	@echo $(OBJ)
+
+$(TARGET) : $(OBJ)
+	$(GCC) -O3  -o $@ $(OBJ)
 
 %.o : %.cpp
 	$(GCC) -O3 -o $@ -c $< $(CFLAGS)
